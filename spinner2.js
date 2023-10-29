@@ -2,16 +2,17 @@ const baton = [ '|', '/', '-', '\\' ];
 const reps = 1;
 let timeDelay = 100;
 let seq = 0;
+let output = "";
 
-for (let i = 0; i < (reps * 8); i++) {
+const setTimer = function (string, delay) {
   setTimeout(() => {
-    process.stdout.write('\r' + baton[seq] + '    ');
-  }, timeDelay);
-  timeDelay += 200;
-  if (seq < 3) {
-    seq++;
-  } else {
-    seq = 0;
-  }
-}
+    process.stdout.write(string);
+  }, delay);
+};
 
+for (let i = 0; i <= (reps * 8); i++) {
+  seq = i % 4;
+  output = '\r' + baton[seq] + '    ';
+  setTimer(output, timeDelay);
+  timeDelay += 200;
+}
